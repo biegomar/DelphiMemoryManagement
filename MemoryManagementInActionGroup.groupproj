@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{0F2B6410-17B1-46D4-9E06-941E33C2CCC3}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="MemoryManagementInAction.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="MemoryManagementInAction">
+        <MSBuild Projects="MemoryManagementInAction.dproj"/>
+    </Target>
+    <Target Name="MemoryManagementInAction:Clean">
+        <MSBuild Projects="MemoryManagementInAction.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MemoryManagementInAction:Make">
+        <MSBuild Projects="MemoryManagementInAction.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="MemoryManagementInAction"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="MemoryManagementInAction:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="MemoryManagementInAction:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
