@@ -6,6 +6,9 @@
         <Projects Include="MemoryManagementInAction.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="test\MemoryManagementInTest.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -23,14 +26,23 @@
     <Target Name="MemoryManagementInAction:Make">
         <MSBuild Projects="MemoryManagementInAction.dproj" Targets="Make"/>
     </Target>
+    <Target Name="MemoryManagementInTest">
+        <MSBuild Projects="test\MemoryManagementInTest.dproj"/>
+    </Target>
+    <Target Name="MemoryManagementInTest:Clean">
+        <MSBuild Projects="test\MemoryManagementInTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MemoryManagementInTest:Make">
+        <MSBuild Projects="test\MemoryManagementInTest.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="MemoryManagementInAction"/>
+        <CallTarget Targets="MemoryManagementInAction;MemoryManagementInTest"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="MemoryManagementInAction:Clean"/>
+        <CallTarget Targets="MemoryManagementInAction:Clean;MemoryManagementInTest:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="MemoryManagementInAction:Make"/>
+        <CallTarget Targets="MemoryManagementInAction:Make;MemoryManagementInTest:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

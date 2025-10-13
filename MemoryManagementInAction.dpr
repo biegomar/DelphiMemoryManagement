@@ -5,20 +5,21 @@ program MemoryManagementInAction;
 {$R *.res}
 
 uses
+  FastMM5,
   System.SysUtils,
   AnimalUnit in 'AnimalUnit.pas',
   FactoryUnit in 'FactoryUnit.pas';
 
 var
-  ActualAnimal : TAnimal;
-  AnimalSpeech: string;
+  actualAnimal : TAnimal;
+  animalSpeech: string;
 
 begin
   try
-    ActualAnimal := TAnimalFactory.CreateAnimal(atDog);
-    AnimalSpeech := ActualAnimal.MakeNoise;
+    actualAnimal := TAnimalFactory.CreateAnimal(atDog);
+    animalSpeech := actualAnimal.MakeNoise;
 
-    WriteLn(string.Format('The animal says: "%s"', [AnimalSpeech]));
+    WriteLn(string.Format('The animal says: "%s"', [animalSpeech]));
     ReadLn;
   except
     on E: Exception do

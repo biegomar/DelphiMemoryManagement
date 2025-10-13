@@ -7,17 +7,17 @@ uses AnimalUnit;
 type
 
   TAnimalFactory = class
-    public class function CreateAnimal(AnimalType: TAnimalType): TAnimal;
+    public class function CreateAnimal(Species: TSpecies): TAnimal;
   end;
 
 implementation
 
 { TAnimalFactory }
 
-class function TAnimalFactory.CreateAnimal(AnimalType: TAnimalType): TAnimal;
+class function TAnimalFactory.CreateAnimal(Species: TSpecies): TAnimal;
 begin
   Result := nil;
-  case AnimalType of
+  case Species of
     atDog:  Result := TDog.Create;
     atCat:  Result := TCat.Create;
   end;
