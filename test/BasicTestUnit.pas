@@ -3,6 +3,7 @@ unit BasicTestUnit;
 interface
 
 uses
+  SysUtils,
   DUnitX.TestFramework,
   AnimalUnit,
   FactoryUnit;
@@ -13,12 +14,13 @@ type
   public
     [Test]
     procedure TestCreateDog;
+    [Test]
     procedure TestCreateCat;
 
     [Test]
-    [TestCase('TestA','1,2')]
-    [TestCase('TestB','3,4')]
-    procedure TestMakeNoise(const AValue1 : Integer;const AValue2 : Integer);
+    [TestCase('Dog', 'atDog,Wuff')]
+    [TestCase('Cat', 'atCat,Miau')]
+    procedure TestMakeNoise(const Species : TSpecies; const Expected : string);
   end;
 
 
@@ -30,20 +32,36 @@ procedure TBasicTest.TestCreateCat;
 var
   actual: TAnimal;
 begin
-  actual := TAnimalFactory.CreateAnimal(atDog);
-
-  Assert.IsTrue(actual.ClassType = TCat, 'Factory sollte ein Objekt vom Typ TCat (oder abgeleitet) liefern.');
-
+  try
+    actual := TAnimalFactory.CreateAnimal(atCat);
+    Assert.IsTrue(actual.ClassType = TCat, 'Factory should return an object of type TCat (or derived).');
+  finally
+    actual.Free;
+  end;
 end;
 
 procedure TBasicTest.TestCreateDog;
+var
+  Dog: TDog;
 begin
-
+  Dog := TDog.Create;
+  Assert.AreEqual('Wuff', Dog.MakeNoise, 'Dog should bark');
 end;
 
-procedure TBasicTest.TestMakeNoise(const AValue1, AValue2: Integer);
-begin
+procedure TBasicTest.TestMakeNoise(const Species : TSpecies;const Expected : string);
+var
+  sut: TAnimal;
+  actual: string;
 
+begin
+  try
+    sut := TAnimalFactory.CreateAnimal(Species);
+    actual := sut.MakeNoise;
+
+    Assert.IsTrue(actual = Expected, Format('Should be "%s" but was "%s"', [Expected, actual]));
+  finally
+    sut.Free;
+  end;
 end;
 
 initialization

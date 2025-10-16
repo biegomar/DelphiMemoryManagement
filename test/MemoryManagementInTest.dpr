@@ -15,8 +15,8 @@ uses
   DUnitX.Loggers.Xml.NUnit,
   {$ENDIF }
   DUnitX.TestFramework,
-  MemoryManagementTestUnit in 'MemoryManagementTestUnit.pas',
   BasicTestUnit in 'BasicTestUnit.pas',
+  MemoryLeakTestUnit in 'MemoryLeakTestUnit.pas',
   AnimalUnit in '..\AnimalUnit.pas',
   FactoryUnit in '..\FactoryUnit.pas';
 

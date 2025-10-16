@@ -105,8 +105,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="MemoryManagementTestUnit.pas"/>
         <DCCReference Include="BasicTestUnit.pas"/>
+        <DCCReference Include="MemoryLeakTestUnit.pas"/>
         <DCCReference Include="..\AnimalUnit.pas"/>
         <DCCReference Include="..\FactoryUnit.pas"/>
         <BuildConfiguration Include="Base">
